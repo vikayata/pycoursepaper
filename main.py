@@ -1,4 +1,8 @@
-"""Text Fragmentator v1.0"""
+﻿"""Text Fragmentator v1.0"""
+
+from pony import orm
+
+db = Database()
 
 class Book(object):
     """Книга"""
@@ -12,8 +16,11 @@ class Book(object):
         for i in self.blocks:
             print(i.length, i.data, '\n')
 
-class GridBlock(object):
+class GridBlock(db.Entity):
     """Блок структуры книги"""
+    id = Required(int)
+    length = Required(int)
+    data = Required(str)
 
     def __init__(self, text):
         """Создание блока"""
